@@ -1,0 +1,52 @@
+\begin{titlepage} % Suppresses displaying the page number on the title page and the subsequent page counts as page 1
+    %------------------------------------------------
+    %    Grey title box
+    %------------------------------------------------
+    \begin{center}
+%     \colorbox{grey}{
+        \parbox[t]{0.93\textwidth}{ % Outer full width box
+            \parbox[t]{0.91\textwidth}{ % Inner box for inner right text margin
+                \sffamily
+                \center
+                
+                \vspace{0.7cm} % Space between the start of the title and the top of the grey box
+                
+                % Title font size, the first argument is the font size and the second is the line spacing, adjust depending on title length
+                \fontsize{80pt}{90pt}\selectfont
+                \textbf{Śpiewnik}\par
+            
+                % \vspace{0.5cm}
+                \fontsize{50pt}{80pt}\selectfont
+                \textbf{Ryczypiska}\par
+
+                \vspace{0.7cm} % Space between the end of the title and the bottom of the grey box
+            }
+        }
+%     }
+    
+    \vfill % Space between the title box and author information
+    \begin{figure}[h]
+        \centering
+        \href{http://tu.bedzie.link.do.pdf/spiewnik/}
+        % usuń komentarz jak zrobis zswoją grafikę ryczypiska
+        %{\includegraphics[width=0.6\textwidth]{akz_spiewnik_qr_Logo}}\\
+        \href{http://tu.bedzie.link.do.pdf/spiewnik/}{{\Large\texttt{tu.bedzie.link.do.pdf/spiewnik}}}
+       % \label{fig:my_label}
+    \end{figure}
+    \end{center}
+    \vfill
+    %------------------------------------------------
+    %    Author name and information
+    %------------------------------------------------
+    
+    \parbox[t]{0.93\textwidth}{ % Box to inset this section slightly
+        \raggedleft % Right align the text
+        \large % Increase the font size
+        {\Large Wersja v2025.0\ifphone{.1}\fi.\AKZSBversion}\\[4pt] % Extra space after name
+        Opracował Michał Chojaczyk\\[4pt] % Extra space before URL
+        \href{http://tu.bedzie.link.do.pdf/}{\texttt{tu.bedzie.link.do.pdf}}\\
+        
+        \hfill\rule{0.2\linewidth}{1pt}% Horizontal line, first argument width, second thickness
+    }
+    
+\end{titlepage}

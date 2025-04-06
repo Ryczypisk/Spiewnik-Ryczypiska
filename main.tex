@@ -1,0 +1,70 @@
+%
+% Śpiewnik Ryczypiska
+% by Michał Chojaczyk
+% korzystając z formatu AKZ AGH od Krzysztofa Kordala
+% compiler: LuaLaTeX / pdfLaTeX
+%
+
+%================================================================================
+%   Document Preamble stuff
+%================================================================================
+\documentclass[11pt]{book}
+\usepackage[phone, dark]{AKZsongbook} % [print] / [phone]
+
+% Just so it's here (not used in document)
+\title{Śpiewnik Ryczypiska}
+\author{Michał Chojaczyk}
+\date{Kwiecień 2025}
+
+% Redefinition of SongNumbers -> add hyperref to Index
+\renewcommand\printsongnum[1]{\hyperlink{spis}{\sffamily\bfseries\huge#1}}
+
+%% ==================== Lua script ====================
+\ifdefined\directlua    % run in LuaLaTeX for Overleaf
+\directlua{ 
+    if not __visited__ then
+        __visited__ = 1
+        
+        function runcommand(cmd) 
+            local fout = assert(io.popen(cmd, 'r')) 
+            local str = assert(fout:read('*a')) 
+            fout:close() 
+            return str 
+        end 
+        
+        runcommand("pdflatex -draftmode main.tex")
+        runcommand("texlua songidx.lua sbtitleshanty.sxd sbtitleshanty.sbx")
+        runcommand("texlua songidx.lua sbtitleother.sxd sbtitleother.sbx")
+        % -- runcommand("texlua songidx.lua -b bible.can cbscrip.sxd cbscrip.sbx") 
+    end
+} 
+\fi
+
+%================================================================================
+%   Songbook itself
+%================================================================================
+\begin{document}
+
+\input{titlepage}
+
+\hypertarget{spis}{\showindex[2]{Spis treści -- Szanty \& Pieśni żeglarskie}{titleshantyidx}}
+\newpage
+\showindex[2]{Spis treści -- Inne}{titleotheridx}
+\newpage
+\songchapter{Szanty \& Pieśni żeglarskie}
+\begin{songs}{titleshantyidx}
+
+    \input{song_sections/szanty.tex}
+
+    \savesongnum % Save current songnum to continue numeration in next section
+\end{songs}
+
+\songchapter{Inne}
+\begin{songs}{titleotheridx}
+
+    \input{song_sections/inne.tex}
+
+    \savesongnum % Save current songnum to continue numeration in next section
+\end{songs}
+
+\end{document}
