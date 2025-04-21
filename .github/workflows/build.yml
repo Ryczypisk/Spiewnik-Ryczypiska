@@ -1,0 +1,27 @@
+name: Build Śpiewnik PDF
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up LaTeX and compile
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          latexmk_use_lualatex: true  # lub usuń ten wiersz jeśli używasz pdflatex
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Spiewnik-Ryczypiska
+          path: main.pdf
+          retention-days: 1  # Ustaw na 1 dzień, aby nie przechowywać artefaktów dłużej niż to konieczne
