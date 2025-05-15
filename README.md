@@ -1,6 +1,9 @@
 # Śpiewnik Ryczypiska
 
-Build instruction:
+Build intructions:
+use gitlub actions to run build job 
+
+Local build instruction:
 - install visual studio code
 - install tex live https://www.tug.org/texlive/windows.html#install
 - dowlonad repo from github
